@@ -15,8 +15,8 @@ jest.mock('./components/zones/TimelineArea', () => ({
 }));
 
 test('should render all mocked componentes', () => {
-  const { getByText, debug } = render(<App />);
-  debug();
+  const { getByText } = render(<App />);
+
   const InitialElementAreaNode = getByText(/InitialElementArea/i);
   expect(InitialElementAreaNode).toBeInTheDocument();
 
