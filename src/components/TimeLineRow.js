@@ -2,34 +2,35 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const TimeLineRowWrapper = styled.div`
-  width: ${(p) => p.widthCols * 10}px;
-  height: 40px;
+  position: relative;
+  width: ${(p) => p.colWidth * p.colNumber}px;
+  height: ${(p) => p.rowHeight}px;
   background: grey;
-  margin: 1px;
+  box-shadow: inset 0px 0px 0px 1px #101010;
 `;
 
-function TimeLineRow({ cols, children, onRemove, id }) {
+function TimeLineRow({ colNumber, colWidth, rowHeight, onRemove, children, id }) {
   function handleRemoveRow() {
     onRemove(id);
   }
 
   return (
     <>
-      <TimeLineRowWrapper widthCols={cols}>{children}</TimeLineRowWrapper>
-      <button onClick={handleRemoveRow} type="button">
-        X
-      </button>
+      <TimeLineRowWrapper colWidth={colWidth} colNumber={colNumber} rowHeight={rowHeight}>
+        {children}
+        <button onClick={handleRemoveRow} type="button">
+          X
+        </button>
+      </TimeLineRowWrapper>
     </>
   );
 }
 
-TimeLineRow.defaultProps = {
-  cols: 100,
-};
-
 TimeLineRow.propTypes = {
   children: PropTypes.node.isRequired,
-  cols: PropTypes.number,
+  colNumber: PropTypes.number.isRequired,
+  colWidth: PropTypes.number.isRequired,
+  rowHeight: PropTypes.number.isRequired,
   onRemove: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
 };

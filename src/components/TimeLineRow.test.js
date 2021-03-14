@@ -7,10 +7,12 @@ const idMock = 'id';
 const colsMock = 20;
 
 const MockedProps = {
+  colWidth: 10,
+  rowHeight: 45,
   children: childrenMock,
   onRemove: onRemoveMock,
   id: idMock,
-  cols: colsMock,
+  colNumber: colsMock,
 };
 
 test('should render children properly', () => {
@@ -37,6 +39,6 @@ test('should calculate the width of the row based on the number of columns passe
 
   const newCols = 5;
   // eslint-disable-next-line react/jsx-props-no-spreading
-  rerender(<TimeLineRow {...MockedProps} cols={newCols} />);
+  rerender(<TimeLineRow {...MockedProps} colNumber={newCols} />);
   expect(childElement).toHaveStyle(`width: ${newCols * 10}px;`);
 });
